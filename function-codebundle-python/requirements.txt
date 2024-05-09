@@ -1,1 +1,2 @@
-lorem-text
+ibm_db
+requests
