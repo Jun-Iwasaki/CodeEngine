@@ -18,49 +18,30 @@
 # ======================================================= #
 
 ##
- # import the referenced "lorem" module 
-from lorem_text import lorem
+import ibm_db
+# import datetime
+import requests
 
-##
- # The `main` function is the entry-point into the function.
- # 
- # A function can define multiple functions, but it needs to
- # have one dedicated 'main' function, which will be called
- # by the runtime.
- # 
- # The 'main' function has one optional argument, which 
- # carries all the parameters the function was invoked with.
- # 
- # Those arguments are dynamic and can change between 
- # function invocations. 
- # 
- # Additionally, a function has access to some 
- # predefined and also user-defined environment variables.
- #  
-def main(params):
-     words = 10
-
-     return {
-          # specify headers for the HTTP response
-          # we only set the Content-Type in this case, to 
-          # ensure the text is properly displayed in the browser
-          "headers": {
-              "Content-Type": "text/plain;charset=utf-8",
-          },
-          
-          ## use the text generator to create a response sentence
-          #  with 10 words
-          "body": lorem.words(words),
-      }
-# Optional:
-#   If you used a function name different from 'main', make
-#   the function known under the 'main' symbol to the 
-#   runtime, so it can be invoked.
-#
-#   Example:
-#
-#   def my_main_func_with_another_name(params) {
-#     ...
-#   }
-#   ...
-#   main = my_main_func_with_another_name
+def main(dict):
+    # パーソナライズ用のテーブルにselect文を発行する
+    if dict["action"] == "select":
+        ssldsn = "DATABASE=BLUDB;HOSTNAME=9938aec0-8105-433e-8bf9-0fbb7e483086.c1ogj3sd0tgtu0lqde00.databases.appdomain.cloud;PORT=32459;PROTOCOL=TCPIP;UID=yvn87313;PWD=2fWg6pnBHozGUlsF;Security=SSL"
+        db_conn = ibm_db.connect(ssldsn,"","")
+        sql = "SELECT * FROM PERSONAL_DATA WHERE ID = ?"
+        db_stmt = ibm_db.prepare(db_conn,sql)
+        id = dict["id"]
+        ibm_db.bind_param(db_stmt,1,id)
+        ibm_db.execute(db_stmt)
+        rows = ibm_db.fetch_tuple(db_stmt)
+        ibm_db.close(db_conn)
+        return {'result' : [rows] }
+        
+    if dict["action"] == "studio":
+        payload_scoring = {
+            'age': dict["age"],
+            'category': '婦人服03',
+            'product': '9900172'
+        }
+        response_scoring = requests.post('http://assistant-app-showcase.roks-customercare-tokyo-1-45fd50251ba6e6694c802802d1291f6a-0000.jp-tok.containers.appdomain.cloud', json=payload_scoring, headers={'Content-Type': 'application/json'})
+        return response_scoring.json()
+    
