@@ -1,11 +1,5 @@
-# Python Function with additional modules
+# Showcase ピザ屋のデモで利用するFunction
 
-A sample Python function that uses an external pip module referenced by the requirements.txt file 
+Code Engineで関数を作成して利用します
+<img width="1146" alt="image" src="https://github.com/Jun-Iwasaki/CodeEngine/assets/53922934/3db071d6-f9e4-41f5-85cc-bf591b94635e">
 
-Deploy the function straight to Code Engine by running the following command from this directory
-
-```bash
-ibmcloud ce fn create -n lorem-python -runtime python-3.11 --build-source .
-```
-
-For more information follow th official docs -> [Including modules for a Python Function](https://cloud.ibm.com/docs/codeengine?topic=codeengine-fun-create-repo#function-python-dep-repo)
