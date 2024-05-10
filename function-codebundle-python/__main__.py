@@ -19,7 +19,6 @@
 
 ##
 import ibm_db
-# import datetime
 import requests
 
 def main(dict):
@@ -38,8 +37,7 @@ def main(dict):
             "headers": {
             "Content-Type": "application/json;charset=utf-8",
             },
-#            'result' : [rows] 
-            "body" : [rows] 
+            "body" : {'result' : [rows] }
         }
         
     if dict["action"] == "studio":
@@ -49,11 +47,9 @@ def main(dict):
             'product': '9900172'
         }
         response_scoring = requests.post('http://assistant-app-showcase.roks-customercare-tokyo-1-45fd50251ba6e6694c802802d1291f6a-0000.jp-tok.containers.appdomain.cloud', json=payload_scoring, headers={'Content-Type': 'application/json'})
-        return response_scoring.json()
         return {
             "headers": {
             "Content-Type": "application/json;charset=utf-8",
             },
             "body" : response_scoring.json()
         }
-    
