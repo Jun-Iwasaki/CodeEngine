@@ -34,7 +34,13 @@ def main(dict):
         ibm_db.execute(db_stmt)
         rows = ibm_db.fetch_tuple(db_stmt)
         ibm_db.close(db_conn)
-        return {'result' : [rows] }
+        return {
+            "headers": {
+            "Content-Type": "application/json;charset=utf-8",
+            },
+#            'result' : [rows] 
+            "body" : [rows] 
+        }
         
     if dict["action"] == "studio":
         payload_scoring = {
@@ -44,4 +50,10 @@ def main(dict):
         }
         response_scoring = requests.post('http://assistant-app-showcase.roks-customercare-tokyo-1-45fd50251ba6e6694c802802d1291f6a-0000.jp-tok.containers.appdomain.cloud', json=payload_scoring, headers={'Content-Type': 'application/json'})
         return response_scoring.json()
+        return {
+            "headers": {
+            "Content-Type": "application/json;charset=utf-8",
+            },
+            "body" : response_scoring.json()
+        }
     
