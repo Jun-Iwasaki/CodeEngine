@@ -46,7 +46,8 @@ def main(dict):
             'category': '婦人服03',
             'product': '9900172'
         }
-        response_scoring = requests.post('http://node-assistant-showcase.roks-customercare-tokyo-2-45fd50251ba6e6694c802802d1291f6a-0000.jp-tok.containers.appdomain.cloud', json=payload_scoring, headers={'Content-Type': 'application/json'})
+        #response_scoring = requests.post('http://node-assistant-showcase.roks-customercare-tokyo-2-45fd50251ba6e6694c802802d1291f6a-0000.jp-tok.containers.appdomain.cloud', json=payload_scoring, headers={'Content-Type': 'application/json'})
+        response_scoring = requests.post('https://application-wa-ws.1g76rmif3lvq.jp-tok.codeengine.appdomain.cloud', json=payload_scoring, headers={'Content-Type': 'application/json'})
         return {
             "headers": {
             "Content-Type": "application/json;charset=utf-8",
