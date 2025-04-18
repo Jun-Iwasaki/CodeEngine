@@ -24,9 +24,9 @@ import requests
 def main(dict):
     # パーソナライズ用のテーブルにselect文を発行する
     if dict["action"] == "select":
-        ssldsn = "DATABASE=BLUDB;HOSTNAME=9938aec0-8105-433e-8bf9-0fbb7e483086.c1ogj3sd0tgtu0lqde00.databases.appdomain.cloud;PORT=32459;PROTOCOL=TCPIP;UID=yvn87313;PWD=2fWg6pnBHozGUlsF;Security=SSL"
+        ssldsn = "DATABASE=BLUDB;HOSTNAME=a25e0deb-8892-4080-8646-5f11a321fed6-jptok.bt1ibm.db2.ibmappdomain.cloud;PORT=30227;PROTOCOL=TCPIP;UID=cfe1c59d;PWD=u3f2tO8D4RlgsPAI;Security=SSL"
         db_conn = ibm_db.connect(ssldsn,"","")
-        sql = "SELECT * FROM PERSONAL_DATA WHERE ID = ?"
+        sql = "SELECT * FROM ACCOUNT_DATA WHERE ID = ?"
         db_stmt = ibm_db.prepare(db_conn,sql)
         id = dict["id"]
         ibm_db.bind_param(db_stmt,1,id)
