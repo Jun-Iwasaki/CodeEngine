@@ -26,7 +26,7 @@ def main(dict):
     if dict["action"] == "select":
         ssldsn = "DATABASE=BLUDB;HOSTNAME=a25e0deb-8892-4080-8646-5f11a321fed6-jptok.bt1ibm.db2.ibmappdomain.cloud;PORT=30227;PROTOCOL=TCPIP;UID=cfe1c59d;PWD=u3f2tO8D4RlgsPAI;Security=SSL"
         db_conn = ibm_db.connect(ssldsn,"","")
-        sql = "SELECT * FROM ACCOUNT_DATA WHERE ID = ?"
+        sql = "SELECT * FROM ACCOUNT.ACCOUNT_DATA WHERE ID = ?"
         db_stmt = ibm_db.prepare(db_conn,sql)
         id = dict["id"]
         ibm_db.bind_param(db_stmt,1,id)
