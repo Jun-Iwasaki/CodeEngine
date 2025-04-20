@@ -21,10 +21,11 @@ import ibm_db
 import requests
 import os
 def main(dict):
+    result_body = {'result': [(111, '山田', 45, 'M', '03-3333-4444', '中央区日本橋箱崎町 19-21', 'マルゲリータ', 'L', 'コーラ', '唐揚げ', 'P', None)]}
     return {
         "headers": {
         "Content-Type": "application/json;charset=utf-8",
         },
         "statusCode": 200,
-        "body": dict
+        "body": {'result' : [dict] }
     }
