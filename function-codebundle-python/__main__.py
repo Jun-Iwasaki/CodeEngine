@@ -20,7 +20,7 @@
 ##
 import ibm_db
 import requests
-
+import os
 def main(dict):
     # パーソナライズ用のテーブルにselect文を発行する
     if dict["action"] == "select":
@@ -37,6 +37,7 @@ def main(dict):
             "headers": {
             "Content-Type": "application/json;charset=utf-8",
             },
+            "statusCode": 200,
             "body" : {'result' : [rows] }
         }
         
