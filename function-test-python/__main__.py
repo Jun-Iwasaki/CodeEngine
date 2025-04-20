@@ -27,5 +27,5 @@ def main(dict):
         "Content-Type": "application/json;charset=utf-8",
         },
         "statusCode": 200,
-        "body": {'result' : [dict] }
+        "body": {'result' : [result_body] }
     }
