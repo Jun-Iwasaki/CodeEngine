@@ -25,7 +25,7 @@ def main(dict):
     db_conn = ibm_db.connect(ssldsn,"","")
     sql = "SELECT * FROM ACCOUNT.ACCOUNT_DATA WHERE ID = ?"
     db_stmt = ibm_db.prepare(db_conn,sql)
-    id = "333"
+    id = dict["id"]
     ibm_db.bind_param(db_stmt,1,id)
     ibm_db.execute(db_stmt)
     rows = ibm_db.fetch_tuple(db_stmt)
