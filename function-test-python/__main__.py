@@ -21,20 +21,10 @@ import ibm_db
 import requests
 import os
 def main(dict):
-    ssldsn = "DATABASE=BLUDB;HOSTNAME=a25e0deb-8892-4080-8646-5f11a321fed6-jptok.bt1ibm.db2.ibmappdomain.cloud;PORT=30227;PROTOCOL=TCPIP;UID=cfe1c59d;PWD=u3f2tO8D4RlgsPAI;Security=SSL"
-    db_conn = ibm_db.connect(ssldsn,"","")
-    sql = "SELECT * FROM ACCOUNT.ACCOUNT_DATA WHERE ID = ?"
-    db_stmt = ibm_db.prepare(db_conn,sql)
-    id = dict["id"]
-    ibm_db.bind_param(db_stmt,1,id)
-    ibm_db.execute(db_stmt)
-    rows = ibm_db.fetch_tuple(db_stmt)
-    ibm_db.close(db_conn)
-
     return {
         "headers": {
         "Content-Type": "application/json;charset=utf-8",
         },
         "statusCode": 200,
-        "body": {'result' : [rows] }
+        "body": dict
     }
